@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Статьи</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            padding: 40px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+        .article {
+            background: rgb(157, 193, 218);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+        .actions a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #40739e;
+        }
+        .delete {
+            color: #4a160b;
+        }
+        .create-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background: #0f1c32;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Статьи</h1>
+
+    <a class="create-btn" href="/articles/create/">+ Создать статью</a>
+
+    {% for article in articles %}
+        <div class="article">
+            <h3>{{ article.title }}</h3>
+            <p>{{ article.content|truncatechars:200 }}</p>
+
+            <div class="actions">
+                <a href="/articles/{{ article.id }}/edit/">Редактировать</a>
+                <a class="delete" href="/articles/{{ article.id }}/delete/">Удалить</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>Статей пока нет</p>
+    {% endfor %}
+</div>
+
+</body>
+</html>
+
